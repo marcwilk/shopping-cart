@@ -2,6 +2,7 @@ import React from 'react';
 import CartItem from './CartItem.jsx';
 
 const CartItems = (props) => {
+  console.log("props", props.cartItemsList)
   return (
     <div className="container">
       <h1>Cart Items</h1>
@@ -13,7 +14,12 @@ const CartItems = (props) => {
             <div className="col-md-2">Quantity</div>
           </div>
         </div>
-        {this.props.list.map(item =>)}
+        {props.cartItemsList.map(item =>
+          <CartItem
+          name={item.product.name}
+          priceInCents={item.product.priceInCents}
+          quantity={item.quantity}
+          />)}
       </div>
     </div>
   )
