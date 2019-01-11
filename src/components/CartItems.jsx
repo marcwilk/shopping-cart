@@ -2,7 +2,6 @@ import React from 'react';
 import CartItem from './CartItem.jsx';
 
 const CartItems = (props) => {
-  console.log("props", props.cartItemsList)
   return (
     <div className="container">
       <h1>Cart Items</h1>
@@ -16,6 +15,7 @@ const CartItems = (props) => {
         </div>
         {props.cartItemsList.map(item =>
           <CartItem
+          key={item.id}
           name={item.product.name}
           priceInCents={item.product.priceInCents}
           quantity={item.quantity}
