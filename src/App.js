@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import CartHeader from './components/CartHeader.jsx';
-import CartItems from './components/CartItems.jsx';
-import CartFooter from './components/CartFooter.jsx';
-import AddItem from './components/AddItem.jsx';
+import CartHeader from './components/CartHeader';
+import CartFooter from './components/CartFooter';
+import CartItems from './components/CartItems';
+import AddItem from './components/AddItem';
 
 class App extends Component {
   state = {
@@ -18,22 +16,33 @@ class App extends Component {
       { id: 46, name: 'Intelligent Leather Clock', priceInCents: 2999 },
       { id: 47, name: 'Ergonomic Bronze Lamp', priceInCents: 40000 },
       { id: 48, name: 'Awesome Leather Shoes', priceInCents: 3990 },
-    ]
-  }
-  render() {
-    const cartItemsList = [
+    ],
+    cartItemsList: [
       { id: 1, product: { id: 40, name: 'Mediocre Iron Watch', priceInCents: 399 }, quantity: 1 },
       { id: 2, product: { id: 41, name: 'Heavy Duty Concrete Plate', priceInCents: 499 }, quantity: 2 },
       { id: 3, product: { id: 42, name: 'Intelligent Paper Knife', priceInCents: 1999 }, quantity: 1 },
     ]
+  }
+
+  addItemToState = (quantity,productId)=> {
+    let productToAdd = this.state.products.find(product => product.id == productId)
+    let newItem = {
+      id: this.state.cartItemsList.length + 1,
+      product: productToAdd,
+      quantity: quantity
+    }
+    this.setState({cartItemsList:[...this.state.cartItemsList, newItem] })
+  }
+  render() {
+
     return (
-      <div>
+      <div className="App">
         <CartHeader />
-        <CartItems cartItemsList={cartItemsList} />
-        <AddItem products={this.state.products} />
-        <CartFooter copyright={2019} />
+        <CartItems cartItemsList={this.state.cartItemsList}/>
+        <AddItem products={this.state.products} addItemToState={this.addItemToState}/>
+        <CartFooter copyright={2019}/>
       </div>
-    )
+    );
   }
 }
 
