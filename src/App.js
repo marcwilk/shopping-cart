@@ -3,6 +3,7 @@ import CartHeader from './components/CartHeader';
 import CartFooter from './components/CartFooter';
 import CartItems from './components/CartItems';
 import AddItem from './components/AddItem';
+import CartTotal from './components/CartTotal';
 
 class App extends Component {
   state = {
@@ -39,6 +40,7 @@ class App extends Component {
       <div className="App">
         <CartHeader />
         <CartItems cartItemsList={this.state.cartItemsList}/>
+        <CartTotal list={this.state.cartItemsList}/>
         <AddItem products={this.state.products} addItemToState={this.addItemToState}/>
         <CartFooter copyright={2019}/>
       </div>
